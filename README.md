@@ -1,27 +1,27 @@
-📊 Fact-Checking Web App (PDF → Verified Claims)
+<img width="949" height="265" alt="image" src="https://github.com/user-attachments/assets/07deda3e-55de-40f9-9dd7-d9f28f4d95b9" />📊 Fact-Checking Web App (PDF → Verified Claims)
 
 A Streamlit-based AI fact-checking application that uploads a PDF document, automatically extracts paragraph-wise factual claims, and verifies each claim using live web search + LLM reasoning.
 
 🚀 What This App Does
 
-1.Upload any PDF document (reports, articles, market analysis, etc.)
+1. Upload any PDF document (reports, articles, market analysis, etc.)
 
-2.Automatically:
-  •Cleans messy PDF text
-  •Splits the document into logical paragraphs
-  •Extracts explicit factual claims
+2. Automatically:
+  • Cleans messy PDF text
+  • Splits the document into logical paragraphs
+  • Extracts explicit factual claims
   
-3.Each claim is verified using:
-  •Live web search (Tavily API)
-  •LLM-based fact checking (Gemma via OpenRouter)
+3. Each claim is verified using:
+  • Live web search (Tavily API)
+  • LLM-based fact checking (Gemma via OpenRouter)
 
-4.Displays results as:
-  •✅ Verified
-  •⚠️ Inaccurate
-  •❌ False
+4. Displays results as:
+  • ✅ Verified
+  • ⚠️ Inaccurate
+  • ❌ False
 
-5.Shows evidence + source link for every claim
-
+5. Shows evidence + source link for every claim
+```text
 🧠 High-Level Architecture
 PDF
  ↓
@@ -36,6 +36,7 @@ Live Web Search (web_search.py)
 LLM Verification (verifier.py)
  ↓
 Streamlit UI (app.py)
+```
 
 ## 📁 Project Structure
 ```text
@@ -56,19 +57,19 @@ fact-checker/
 
 🧩 Core Components Explained
 1️⃣ pdf_handler.py — PDF Text Extraction
-    •Uses PyPDF2
-    •Converts uploaded PDF into raw text
-    •Handles multi-page PDFs safely
+    • Uses PyPDF2
+    • Converts uploaded PDF into raw text
+    • Handles multi-page PDFs safely
 
 2️⃣ claim_extractor.py — Claim Extraction Engine
 Key responsibilities:
-    •Normalize broken PDF text (fixes issues like A rtificial, hard line breaks)
-    •Split document into numbered sections
-    •Extract only explicit, verifiable factual claims
-    •Filters out:
-        •Definitions
-        •Introductions
-        •Non-falsifiable statements
+    • Normalize broken PDF text (fixes issues like A rtificial, hard line breaks)
+    • Split document into numbered sections
+    • Extract only explicit, verifiable factual claims
+    • Filters out :
+        • Definitions
+        • Introductions
+        • Non-falsifiable statements
 
 ```text
 Output format:
@@ -81,22 +82,22 @@ Output format:
 ```
 
 3️⃣ web_search.py — Live Evidence Retrieval
-    •Uses Tavily API
-    •Fetches real-time, authoritative sources
-    •Prevents hallucinations by grounding verification in real data
+    • Uses Tavily API
+    • Fetches real-time, authoritative sources
+    • Prevents hallucinations by grounding verification in real data
 
 4️⃣ verifier.py — Fact Verification Logic
-What it does:
-  •Verifies each claim independently
-  •Uses:
-    •Paragraph context
-    •Live web evidence
-    •Strict numerical & date rules    
+What it does :
+  • Verifies each claim independently
+  • Uses : 
+    • Paragraph context
+    • Live web evidence
+    • Strict numerical & date rules    
 
-Special rules implemented:
-  •Month + year tolerance (e.g., October 2025 ≈ Oct 13, 2025)
-  •Crypto prices always treated as price per coin
-  •Partial mismatches → INACCURATE, not false    
+Special rules implemented :
+  • Month + year tolerance (e.g., October 2025 ≈ Oct 13, 2025)
+  • Crypto prices always treated as price per coin
+  • Partial mismatches → INACCURATE, not false    
 
 ```text
 Return format:
@@ -108,15 +109,15 @@ Return format:
 ```
 
 5️⃣ app.py — Streamlit UI
-Features:
-  •PDF upload
-  •Progress bar for verification
-  •Paragraph-wise expandable results
-  •Color-coded status:
-    •Green → Verified
-    •Yellow → Inaccurate
-    •Red → False
-  •Dark-mode safe UI (fixed paragraph visibility)
+Features :
+  • PDF upload
+  • Progress bar for verification
+  • Paragraph-wise expandable results
+  • Color-coded status :
+    • Green → Verified
+    • Yellow → Inaccurate
+    • Red → False
+  • Dark-mode safe UI (fixed paragraph visibility)
 
 🔐 Environment Variables
 Create a .env file locally (not committed):  
@@ -141,13 +142,13 @@ streamlit run app.py
 ```
 
 ☁️ Deploy on Streamlit Cloud
-1.Push repo to GitHub
-2.Go to Streamlit Cloud
-3.Select repository
-4.Set secrets:
-5.OPENROUTER_API_KEY
-6.TAVILY_API_KEY
-7.Deploy 🚀
+1. Push repo to GitHub
+2. Go to Streamlit Cloud
+3. Select repository
+4. Set secrets:
+5. OPENROUTER_API_KEY
+6. TAVILY_API_KEY
+7. Deploy 🚀
 
 ⚠️ Known Limitations
 •Verification quality depends on web availability
