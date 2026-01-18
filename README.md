@@ -37,6 +37,7 @@ LLM Verification (verifier.py)
  ↓
 Streamlit UI (app.py)
 
+```text
 📁 Project Structure
 fact-checker/
 │
@@ -51,7 +52,7 @@ fact-checker/
 │   └── web_search.py      # Live web search (Tavily)
 │
 └── README.md
-
+text```
 
 🧩 Core Components Explained
 1️⃣ pdf_handler.py — PDF Text Extraction
