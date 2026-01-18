@@ -29,7 +29,7 @@ st.set_page_config(
 )
 
 # --------------------------------------------------
-# Custom CSS
+# ✅ FIXED Custom CSS (DARK MODE SAFE)
 # --------------------------------------------------
 st.markdown("""
 <style>
@@ -41,21 +41,38 @@ st.markdown("""
         border-radius: 10px;
         margin-bottom: 2rem;
     }
+
     .claim-card {
         padding: 1.5rem;
         border-radius: 10px;
         margin: 1.5rem 0;
         border-left: 6px solid #999;
         background: #f8f9fa;
+        color: #111111;              /* 🔥 CRITICAL FIX */
     }
+
+    .claim-card p {
+        color: #111111;              /* 🔥 CRITICAL FIX */
+    }
+
     .claim-item {
         margin: 0.75rem 0;
         padding-left: 0.75rem;
         border-left: 4px solid;
+        color: inherit;
     }
+
     .verified { border-color: #28a745; }
     .inaccurate { border-color: #ffc107; }
     .false { border-color: #dc3545; }
+
+    /* Optional: improve contrast in dark mode */
+    @media (prefers-color-scheme: dark) {
+        .claim-card {
+            background: #eaeaea;
+            color: #111111;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -104,7 +121,7 @@ def main():
         st.success(f"✓ Found {len(paragraphs)} paragraphs with factual claims")
 
         # ------------------------------
-        # Verify claims (🔥 FINAL SAFE LOOP)
+        # Verify claims (FINAL SAFE LOOP)
         # ------------------------------
         total_claims = sum(len(p.get("claims", [])) for p in paragraphs)
         progress = st.progress(0)
@@ -117,7 +134,7 @@ def main():
             raw_claims = para.get("claims", [])
             atomic_claims = []
 
-            # 🔥 FINAL FIX: flatten JSON-list claims
+            # 🔥 FINAL FIX: flatten JSON-array claims
             for c in raw_claims:
                 if isinstance(c, str) and c.strip().startswith("["):
                     try:
