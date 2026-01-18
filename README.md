@@ -37,8 +37,8 @@ LLM Verification (verifier.py)
  ↓
 Streamlit UI (app.py)
 
+## 📁 Project Structure
 ```text
-📁 Project Structure
 fact-checker/
 │
 ├── app.py                 # Streamlit frontend & app logic
@@ -52,7 +52,7 @@ fact-checker/
 │   └── web_search.py      # Live web search (Tavily)
 │
 └── README.md
-text```
+```
 
 🧩 Core Components Explained
 1️⃣ pdf_handler.py — PDF Text Extraction
@@ -70,6 +70,7 @@ Key responsibilities:
         •Introductions
         •Non-falsifiable statements
 
+```text
 Output format:
 [
   {
@@ -77,6 +78,7 @@ Output format:
     "claims": ["claim 1", "claim 2"]
   }
 ]
+```
 
 3️⃣ web_search.py — Live Evidence Retrieval
     •Uses Tavily API
@@ -96,12 +98,14 @@ Special rules implemented:
   •Crypto prices always treated as price per coin
   •Partial mismatches → INACCURATE, not false    
 
+```text
 Return format:
 {
   "status": "verified | inaccurate | false",
   "evidence": "short explanation",
   "source": "authoritative url"
 }
+```
 
 5️⃣ app.py — Streamlit UI
 Features:
@@ -119,6 +123,7 @@ Create a .env file locally (not committed):
 OPENROUTER_API_KEY=your_openrouter_key
 TAVILY_API_KEY=your_tavily_key
 
+```text
 📦 Installation & Run Locally
 # Clone repository
 git clone https://github.com/your-username/fact-checker.git
@@ -133,6 +138,7 @@ pip install -r requirements.txt
 
 # Run Streamlit app
 streamlit run app.py
+```
 
 ☁️ Deploy on Streamlit Cloud
 1.Push repo to GitHub
@@ -162,6 +168,5 @@ streamlit run app.py
 •News & media verification
 •Academic or policy analysis
 •Due diligence workflows
-Tavily Web Search
-
-Requests
+•Tavily Web Search
+•Requests
